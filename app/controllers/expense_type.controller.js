@@ -1,4 +1,4 @@
-const Customer = require("../models/customer.model.js");
+const ExpenseType = require("../models/expense_type.model.js");
 
 exports.create = (req, res) => {
     // Validate request
@@ -9,14 +9,13 @@ exports.create = (req, res) => {
     }
 
     // Create a Customer
-    const customer = new Customer({
-      email: req.body.email,
+    const expense_type = new ExpenseType({
       name: req.body.name,
-      active: req.body.active
+      comment: req.body.comment
     });
 
     // Save Customer in the database
-    Customer.create(customer, (err, data) => {
+    ExpenseType.create(expense_type, (err, data) => {
       if (err)
         res.status(500).send({
           message:
@@ -28,7 +27,7 @@ exports.create = (req, res) => {
 
 // Retrieve all Customers from the database.
 exports.findAll = (req, res) => {
-    Customer.getAll((err, data) => {
+    ExpenseType.getAll((err, data) => {
       if (err)
         res.status(500).send({
           message:
