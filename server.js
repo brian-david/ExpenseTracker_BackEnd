@@ -29,6 +29,7 @@ app.get("/", (req, res) => {
 });
 
 require("./app/routes/expense_type.routes.js")(app);
+require("./app/routes/expense_entries.routes.js")(app);
 
 // set port, listen for requests
 app.listen(3000, () => {

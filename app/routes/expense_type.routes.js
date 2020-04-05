@@ -18,4 +18,5 @@ module.exports = app => {
 
     //DELETE ALL EXPENSE TYPES
     app.delete("/api/expense_types", expense_type.deleteAll);
+
   };
