@@ -6,6 +6,7 @@ const ExpenseType = function(expesne_type) {
   this.comment = expesne_type.comment;
 };
 
+//INSERT NEW EXPENSE TYPE
 ExpenseType.create = (new_expense_type, result) => {
   sql.query("INSERT INTO expenseType SET ?", new_expense_type, (err, res) => {
     if (err) {
@@ -19,6 +20,7 @@ ExpenseType.create = (new_expense_type, result) => {
   });
 };
 
+//FIND EXPENSE TYPE BY ID
 ExpenseType.findById = (expense_type_id, result) => {
   sql.query(`SELECT * FROM expenseType WHERE id = ${expense_type_id}`, (err, res) => {
     if (err) {
@@ -38,6 +40,7 @@ ExpenseType.findById = (expense_type_id, result) => {
   });
 };
 
+//GET ALL EXPENSE TYPES
 ExpenseType.getAll = result => {
   sql.query("SELECT * FROM expenseType", (err, res) => {
     if (err) {
@@ -51,6 +54,7 @@ ExpenseType.getAll = result => {
   });
 };
 
+//UPDATE EXPENSE TYPE BY ID
 ExpenseType.updateById = (id, customer, result) => {
   sql.query(
     "UPDATE expenseType SET name = ?, comment = ? WHERE id = ?",
@@ -74,6 +78,7 @@ ExpenseType.updateById = (id, customer, result) => {
   );
 };
 
+//DELETE SPECIFIC EXPENSE TYPE
 ExpenseType.remove = (id, result) => {
   sql.query("DELETE FROM expenseType WHERE id = ?", id, (err, res) => {
     if (err) {
@@ -92,5 +97,19 @@ ExpenseType.remove = (id, result) => {
     result(null, res);
   });
 };
+
+//DELETE ALL EXPENSE TYPES / CLEAR THE TABLE
+ExpenseType.removeAll = result => {
+    sql.query("DELETE FROM expenseType", (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      console.log(`deleted ${res.affectedRows} expense types`);
+      result(null, res);
+    });
+  };
 
 module.exports = ExpenseType;
