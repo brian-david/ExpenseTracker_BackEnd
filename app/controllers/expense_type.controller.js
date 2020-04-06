@@ -8,13 +8,13 @@ exports.create = (req, res) => {
       });
     }
 
-    // Create a Customer
+    // Create a type
     const expense_type = new ExpenseType({
       name: req.body.name,
       comment: req.body.comment
     });
 
-    // Save Customer in the database
+    // Save type to the database
     ExpenseType.create(expense_type, (err, data) => {
       if (err)
         res.status(500).send({
@@ -25,7 +25,7 @@ exports.create = (req, res) => {
     });
   };
 
-// Retrieve all Customers from the database.
+// Retrieve all types from the database.
 exports.findAll = (req, res) => {
     ExpenseType.getAll((err, data) => {
       if (err)
@@ -37,12 +37,12 @@ exports.findAll = (req, res) => {
     });
   };
 
-// Find a single Customer with a customerId
+// Find a single type with a customerId
 exports.findOne = (req, res) => {
 
 };
 
-// Update a Customer identified by the customerId in the request
+// Update a type identified by the id in the request
 exports.update = (req, res) => {
 
 };
@@ -64,7 +64,7 @@ exports.delete = (req, res) => {
     });
   };
 
-// Delete all Customers from the database.
+// Delete all types from the database.
 exports.deleteAll = (req, res) => {
     ExpenseType.removeAll((err, data) => {
       if (err)
