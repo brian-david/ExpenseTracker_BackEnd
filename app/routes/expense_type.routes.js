@@ -11,7 +11,7 @@ module.exports = app => {
     app.get("/api/expense_type/:expense_type_ID", expense_type.findOne);
 
     // Update an expense type with id
-    app.put("/api/expense_type/:expense_type_ID", expense_type.update);
+    app.put("/api/expense_type/:id", expense_type.update);
 
     // Delete an expense type with id
     app.delete("/api/expense_type/:expense_type_ID", expense_type.delete);

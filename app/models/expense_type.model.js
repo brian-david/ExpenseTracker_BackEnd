@@ -55,10 +55,10 @@ ExpenseType.getAll = result => {
 };
 
 //UPDATE EXPENSE TYPE BY ID
-ExpenseType.updateById = (id, customer, result) => {
+ExpenseType.updateById = (id, type, result) => {
   sql.query(
     "UPDATE expenseType SET name = ?, comment = ? WHERE id = ?",
-    [expesne_type.name, expesne_type.comment, id],
+    [type.name, type.comment, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -72,8 +72,8 @@ ExpenseType.updateById = (id, customer, result) => {
         return;
       }
 
-      console.log("updated expense type: ", { id: id, ...customer });
-      result(null, { id: id, ...customer });
+      console.log("updated expense type: ", { id: id, ...type });
+      result(null, { id: id, ...type });
     }
   );
 };

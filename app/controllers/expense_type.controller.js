@@ -39,12 +39,46 @@ exports.findAll = (req, res) => {
 
 // Find a single type with a customerId
 exports.findOne = (req, res) => {
-
+    ExpenseType.findById(req.params.expense_type_ID, (err, data) => {
+        if (err) {
+            if (err.kind === "not_found") {
+                res.status(404).send({
+                    message: `Not found type with id ${req.params.expense_type_ID}.`
+                });
+            } else {
+                res.status(500).send({
+                    message: "Error retrieving type with id " + req.params.customerId
+                });
+            }
+        } else res.send(data);
+    });
 };
 
-// Update a type identified by the id in the request
 exports.update = (req, res) => {
+    // Validate Request
+    if (!req.body) {
+        res.status(400).send({
+            message: "Content can not be empty!"
+        });
+    }
 
+    ExpenseType.updateById(
+        req.params.id,
+        new ExpenseType(req.body),
+        (err, data) => {
+            if (err) {
+                if (err.kind === "not_found") {
+                    res.status(404).send({
+                        message: `Not found type with id ${req.params.id}.`
+                    });
+                } else {
+                    res.status(500).send({
+                        message: "Error updating type with id " + req.params.id
+                    });
+                }
+            } else res.send(data);
+        }
+    );
 };
 
 // Delete an expense type with the specified id in the request
