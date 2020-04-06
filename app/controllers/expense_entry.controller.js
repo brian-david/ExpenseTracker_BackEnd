@@ -75,7 +75,7 @@ exports.update = (req, res) => {
         });
     }
 
-    Customer.updateById(
+    ExpenseEntry.updateById(
         req.params.id,
         new ExpenseEntry(req.body),
         (err, data) => {

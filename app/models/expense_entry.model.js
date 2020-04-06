@@ -83,7 +83,7 @@ ExpenseEntry.updateById = (id, entry, result) => {
           return;
         }
 
-        console.log("updated entry: ", { id: id, ...customer });
+        console.log("updated entry: ", { id: id, ...entry });
         result(null, { id: id, ...entry });
       }
     );
